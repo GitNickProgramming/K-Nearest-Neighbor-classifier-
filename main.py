@@ -11,7 +11,7 @@ from preprocessing.simplepreprocessor import SimplePreprocessor
 ap = argparse.ArgumentParser()
 
 ap.add_argument("-d", "--dataset", required=True, help="../K-Nearest-Neighbor-classifier-/dataset/animals/")
-ap.add_argument("-k", "-- neighbors", type=int, default=1, help="#of nearest neighbors for classification")
+ap.add_argument("-k", "--neighbors", type=int, default=1, help="#of nearest neighbors for classification")
 ap.add_argument("-j", "--jobs", type=int, default=-1,
                 help="# of jobs for k-NN distance (-1 uses all available cores)")
 args = vars(ap.parse_args())
@@ -29,7 +29,7 @@ print("[INFO] features matrix: {:.1f}MB".format(data.nbytes / (1024 * 1000.0)))
 le = LabelEncoder()
 labels = le.fit_transform(labels)
 
-(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.25, random_state=0)
+(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.25, random_state=42)
 
 print("[INFO] evaluating k-NN classifier...")
 model = KNeighborsClassifier(n_neighbors=args["neighbors"], n_jobs=["jobs"])
