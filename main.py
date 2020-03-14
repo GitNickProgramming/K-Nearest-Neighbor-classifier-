@@ -17,7 +17,6 @@ args = vars(ap.parse_args())
 
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
-
 sp = SimplePreprocessor(32, 32)
 sdl = SimpleDatasetLoader(preprocessors=[sp])
 (data, labels) = sdl.load(imagePaths, verbose=500)
